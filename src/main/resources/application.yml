@@ -1,10 +1,45 @@
+spring:
+
     # mysql 属性配置
     datasource:
       driver-class-name: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
       url: jdbc:mysql://127.0.0.1:3306/masterdb?useUnicode=true&characterEncoding=utf8
       username: root
       password: root
+      # 连接池的配置信息
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
 
     #日志配置
     logging:
        config: classpath:log4j2.yml
+
+    #redis配置
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      timeout: 0
+      password:
+      pool:
+        minIdle: 1
+        maxIdle: 10
+        maxWait: 10000
+        maxActive: 20
+
+druid:
+    userName: druid #登录账号
+    pwd: 123456     #登录密码
+    ipAllow:       #ip白名单
+    ipDeny:        #ip黑名单
